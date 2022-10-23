@@ -1,0 +1,143 @@
+/*  선택자(selector)
+    # = div# 많이 써서 생략
+    id(#) = 고유
+    class(.) = 여러개
+*/ 
+
+
+html, body{
+    margin: 0px;
+    padding : 0px;
+}
+
+* {
+    box-sizing:border-box;
+}
+
+.ico_mail ,.naver_logo ,.ico_search_submit{
+    background-image: url('./bg.png');
+}
+
+.blind {
+    position: absolute;
+    clip: rect(0 0 0 0);
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+}
+
+.center-align{
+    margin: 0 auto; 
+    width : 1130px; 
+
+}
+
+header{
+    height:160px;
+}
+
+#header-search > h1{
+    display:inline-block;
+    width: 222px;
+    height: 52;
+}
+
+.naver_logo{
+    width: 222px;
+    height: 52px;
+    display: inline-block;
+    background-position : 0px -158px;
+    background-repeat :no-repeat;
+    vertical-align: middle;
+}
+
+#header-search fieldset{
+    display:inline-block;
+    margin-left : 20px;
+    padding : 12px 0px 12px 10px; /* 위 오른쪽 아래 왼쪽*/
+    width : 586px;
+    height: 56px;
+    border: 2px solid #19ce60;
+    vertical-align: middle;
+    position:relative;
+}
+
+#header-search fieldset input{
+    width:444px;
+    height:24px;
+    padding:13px 15px;
+    margin:1px;
+    border: none;
+    padding: 0;
+    outline: none;
+    vertical-align: top;
+    
+}
+
+#header-search fieldset button{
+    width: 56px;
+    height: 56px;
+    border : none;
+    padding : 0;
+    background-color: #19ce60;
+    vertical-align: top;
+    position:absolute;
+    right:-2px;
+    top:-2px;
+}
+
+
+
+
+#header-search .ico_search_submit{
+    display:inline-block;
+    width : 22px;
+    height: 22px;
+    background-position :-420px 0;
+    background-repeat: no-repeat;
+
+}
+
+nav ul{
+    list-style:none;
+    margin: 0;
+    padding: 0;
+}
+nav ul li{
+    float:left;
+    display:inline-block;
+}
+
+nav .list_nav .nav_item{
+    float:left;
+    font-size: 15px;
+    line-height: 30px;
+    font-weight: 700;
+    margin-left:14px;
+}
+nav .list_nav :first-child {
+    margin-left: 0;
+}
+
+
+.nav{
+    color:#19ce60;
+    display:block;
+    text-decoration: none;
+    float : left;
+}
+
+.myFavorite{
+    color : black;
+}
+
+.ico_mail{
+    background-position: -420px -73px;
+    background-repeat: no-repeat;
+    width:21px;
+    height:21px;
+    margin: 3px 9px 0 0;
+    vertical-align: top;
+    display: inline-block;
+}

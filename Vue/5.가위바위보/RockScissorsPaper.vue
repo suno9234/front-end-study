@@ -54,7 +54,7 @@
                 } else if(this.imageCoord === rspCoords.보){
                     this.imageCoord = rspCoords.바위;
                 }
-            },100);
+                },100);
             },
             onClickButton(choice){
                 clearInterval(interval);
