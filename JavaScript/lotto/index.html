@@ -1,0 +1,79 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lotto</title>
+    <style>
+        .ball {
+            display: inline-block;
+            border: 1px solid black;
+            border-radius: 20px;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            font-size: 20px;
+            text-align: center;
+            margin-right: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="result">추첨 결과는? </div>
+    <div id="bonus">보너스: </div>
+</body>
+<script>
+
+    const $result = document.querySelector('#result');
+    const $bonus = document.querySelector('#bonus');
+    const candidate = Array(45).fill().map((value, index) => index + 1);
+    const shuffle = [];
+    while (candidate.length > 0) {
+        const random = Math.floor(Math.random() * candidate.length);
+        const spliceArray = candidate.splice(random, 1);
+        const value = spliceArray[0];
+        shuffle.push(value);
+    }
+    console.log(shuffle);
+    const winBalls = shuffle.slice(0, 6).sort((a, b) => a - b);
+    const bonus = shuffle[6];
+    console.log(winBalls, bonus);
+
+    const colorize = (number,$ball)=>{
+        if (number<10){
+            $ball.style.backgroundColor = 'red';
+        }else if(number<20){
+            $ball.style.backgroundColor = 'orange';
+        }else if(number<30){
+            $ball.style.backgroundColor = 'yellow';
+        }else if(number<40){
+            $ball.style.backgroundColor = 'blue';
+            $ball.style.color = 'white'
+        }else{
+            $ball.style.backgroundColor = 'green';
+            $ball.style.color='white'
+        }
+    }
+
+    const createBall = (number, $target) => {
+        const $ball = document.createElement('div');
+        $ball.className = 'ball';
+        $ball.textContent = number;
+        colorize(number,$ball);
+        $target.appendChild($ball);
+    }
+
+    for (let i = 0; i < 6; i++) {
+        setTimeout(() => {
+            createBall(winBalls[i], $result);
+        }, 1000 * (i + 1));
+    }
+    setTimeout(() => {
+        createBall(bonus, $bonus);
+    }, 7000);
+
+</script>
+
+</html>

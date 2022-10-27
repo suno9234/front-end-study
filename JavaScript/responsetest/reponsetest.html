@@ -1,0 +1,84 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #screen {
+        width: 300px;
+        height: 200px;
+        text-align: center;
+        user-select: none;
+    }
+
+    #screen.waiting {
+        background-color: aqua;
+    }
+
+    #screen.ready {
+        background-color: red;
+        color: white;
+    }
+
+    #screen.now {
+        background-color: greenyellow;
+    }
+</style>
+
+<body>
+    <div id="screen" class="waiting">클릭해서 시작하세요</div>
+    <div id="result">평균 : </div>
+</body>
+<script>
+    const $screen = document.querySelector("#screen");
+    const $result = document.querySelector("#result");
+
+    let state = "waiting";
+    let startTime ;
+    let endTime;
+    const results = [];
+    let timeoutId ; 
+
+    $screen.addEventListener('click', () => {
+        if (state === "waiting") {
+            $screen.className = "ready";
+            $screen.textContent = "초록색이 되면 클릭하세요";
+            state = "ready";
+            timeoutId = setTimeout(() => {
+                $screen.className = "now";
+                $screen.textContent = "클릭하세요";
+                state = "now";
+                //시간 시작
+                startTime = new Date();
+            }, Math.floor(Math.random() * 1000) + 2000);
+
+        } else if (state === "ready") {
+            $screen.className = "waiting";
+            $screen.textContent = "너무 성급하시군요!";
+            state = "waiting";
+            clearTimeout(timeoutId);
+        } else {
+            endTime = new Date();
+            const diff = endTime-startTime;
+            results.push(diff);
+            results.sort((a,b)=>a-b);
+            const top5 = results.slice(0,5);
+            const average = results.reduce((a,c)=>a+c)/results.length;
+            $result.textContent = `현재 : ${diff}ms, 평균 : ${average}ms ${top5}`;
+            startTime = null;
+            endTime = null;
+            
+            $screen.className = "waiting";
+            $screen.textContent = "클릭해서 시작하세요";
+            state = "waiting";
+            
+        }
+    });
+
+
+</script>
+
+</html>

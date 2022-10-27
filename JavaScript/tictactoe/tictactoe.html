@@ -1,0 +1,59 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ticktactoe</title>
+</head>
+<style>
+    table {
+        border-collapse: collapse;
+    }
+
+    td {
+        border: 1px solid black;
+        width: 40px;
+        height: 40px;
+        text-align: center;
+    }
+</style>
+
+<body>
+</body>
+<script>
+    const { body } = document;
+
+    const $table = document.createElement('table');
+    const $result = document.createElement('div');
+    const rows = [];
+    let turn = 'O';
+
+    const callback = (event) => {
+        if (event.target.textContent) {
+            return;
+        }
+        event.target.textContent = turn;
+        turn = turn === 'O' ? 'X' : 'O';
+       
+    }
+    for (let i = 0; i < 3; i++) {
+        const $tr = document.createElement('tr')
+        const cells = [];
+        for (let j = 0; j < 3; j++) {
+            const $td = document.createElement('td')
+            cells.push($td);
+            
+            $tr.append($td);
+
+        }
+        rows.push(cells);
+        $table.append($tr);
+
+    }
+    $table.addEventListener('click', callback);
+    body.append($table);
+    body.append($result);
+</script>
+
+</html>
