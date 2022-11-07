@@ -27,23 +27,97 @@
     const $table = document.createElement('table');
     const $result = document.createElement('div');
     const rows = [];
+    let clickable = true;
     let turn = 'O';
 
+    const checkWinner = (target) => {
+        let rowIndex;
+        let cellIndex;
+        rows.forEach((row, ri) => {
+            row.forEach((cell, ci) => {
+                if (cell === target) {
+                    rowIndex = ri;
+                    cellIndex = ci;
+                }
+            })
+        })
+        let hasWinner = false;
+        if (
+            rows[rowIndex][0].textContent === turn &&
+            rows[rowIndex][1].textContent === turn &&
+            rows[rowIndex][2].textContent === turn
+        ) {
+            hasWinner = true;
+        }
+        if (
+            rows[0][cellIndex].textContent === turn &&
+            rows[1][cellIndex].textContent === turn &&
+            rows[2][cellIndex].textContent === turn
+        ) {
+            hasWinner = true;
+        }
+        if ((
+            rows[0][0].textContent === turn &&
+            rows[1][1].textContent === turn &&
+            rows[2][2].textContent === turn) ||
+            (rows[0][2].textContent === turn &&
+                rows[1][1].textContent === turn &&
+                rows[2][0].textContent === turn)
+
+        ) {
+            hasWinner = true;
+        }
+
+        return hasWinner;
+    };
+
+    const checkWinnerAndDraw = (event) => {
+        if (checkWinner(event.target)) {
+            $result.textContent = `${turn}님이 승리하셨습니다.`;
+            $table.removeEventListener('click', callback);
+            return;
+        }
+        if (rows.flat().every((td) => td.textContent)) {
+            $result.textContent = `무승부`;
+            return;
+        }
+        turn = turn === 'O' ? 'X' : 'O';
+    }
+
     const callback = (event) => {
+        if (!clickable) {
+            return;
+        }
         if (event.target.textContent) {
             return;
         }
+        clickable = false;
         event.target.textContent = turn;
-        turn = turn === 'O' ? 'X' : 'O';
-       
+        checkWinnerAndDraw(event);
+
+        if ($result.textContent === '') {
+            setTimeout(() => {
+                clickable = false;
+                const emptyCells = rows.flat().filter((v) => !v.textContent);
+                const com = emptyCells[Math.floor(Math.random() * emptyCells.length)];
+                com.textContent = turn;
+                checkWinnerAndDraw(event);
+                clickable = true;
+
+
+            }, Math.floor(Math.random() * 3000) + 500);
+        }
+
     }
+
+
     for (let i = 0; i < 3; i++) {
         const $tr = document.createElement('tr')
         const cells = [];
         for (let j = 0; j < 3; j++) {
             const $td = document.createElement('td')
             cells.push($td);
-            
+
             $tr.append($td);
 
         }
