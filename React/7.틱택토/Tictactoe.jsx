@@ -84,6 +84,7 @@ const TicTactoe = () => {
         console.log(win, row, cell, tableData, turn);
         if (win) {
             dispatch({ type: SET_WINNER, winner: turn });
+            dispatch({type:RESET_GAME});
         } else {
             let all = true;
             tableData.forEach((row) => {
@@ -94,7 +95,12 @@ const TicTactoe = () => {
                 })
             })
             //무승부
-            dispatch({ type: CHANGE_TURN });
+            if (all){
+                dispatch({type:RESET_GAME});
+            }else{
+                dispatch({ type: CHANGE_TURN });
+            }
+            
         }
 
     }, [recentCell]);
