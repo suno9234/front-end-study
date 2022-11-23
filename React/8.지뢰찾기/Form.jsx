@@ -7,7 +7,7 @@ const Form = ()=>{
     const [cell,setCell] = useState(10);
     const [mine,setMine] = useState(20);
     const {dispatch} = useContext(TableContext);
-
+    
     const onChangeRow = useCallback((e)=>{
         setRow(e.target.value)
     },[]);
@@ -17,8 +17,9 @@ const Form = ()=>{
     const onChangeMine = useCallback((e)=>{
         setMine(e.target.value)
     },[]);
-    const onClickBtn = useCallBack(()=>{
-        dispatch({type:START_GAME,row,cell,mine})
+    const onClickBtn = useCallback(()=>{
+        console.log('onclickbtn');
+        dispatch({type:START_GAME,row,cell,mine});
     },[row,cell,mine]);
 
     return (
