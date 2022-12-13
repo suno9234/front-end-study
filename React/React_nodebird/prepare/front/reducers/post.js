@@ -50,6 +50,7 @@ const reducer = (state = initialState , action)=>{
         case ADD_POST:
             return {
                 ...state,
+                date : new Date(),
                 mainPosts :[dummyPost, ...state.mainPosts],
                 postAdded : true,
             }
