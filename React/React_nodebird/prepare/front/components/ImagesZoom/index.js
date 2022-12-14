@@ -1,53 +1,52 @@
-import { CloseOutlined } from '@ant-design/icons';
-import propTypes from 'prop-types';
 import React, { useState } from 'react';
+import propTypes from 'prop-types';
 import Slick from 'react-slick';
-import {Overlay , Global , Header , SlickWrapper, ImgWrapper , Indicator ,CloseBtn} from './style';
+import { Overlay, Global, Header, SlickWrapper, ImgWrapper, Indicator, CloseBtn } from './style';
 
 const ImagesZoom = ({ images, onClose }) => {
-    const [currentSlide, setCurrentSlide] = useState(0);
-    return (
-        <Overlay>
-            <Global/>
-            <Header>
-                <h1>상세 이미지</h1>
-                <CloseBtn onClick={onClose}>X</CloseBtn>
-            </Header>
-            <SlickWrapper>
-                <div>
+  const [currentSlide, setCurrentSlide] = useState(0);
+  return (
+    <Overlay>
+      <Global />
+      <Header>
+        <h1>상세 이미지</h1>
+        <CloseBtn onClick={onClose}>X</CloseBtn>
+      </Header>
+      <SlickWrapper>
+        <div>
 
-                    <Slick
-                        initialSlide={0}
-                        afterChange={(slide) => setCurrentSlide(slide)}
-                        infinite
-                        arrows={false}
-                        slidesToShow={1}
-                        slidesToScroll={1}
-                    >
-                        {images.map((v) => (
-                            <ImgWrapper key={v.src}>
-                                <img src={v.src} alt={v.src} />
-                            </ImgWrapper>
-                        ))}
-                    </Slick>
-                    <Indicator>
-                        <div>
-                            {currentSlide+1}
-                            {' '}
-                            / 
-                            {' '}
-                            {images.length}
-                        </div>
-                    </Indicator>
-                </div>
-            </SlickWrapper>
-        </Overlay>
-    )
-}
+          <Slick
+            initialSlide={0}
+            afterChange={(slide) => setCurrentSlide(slide)}
+            infinite
+            arrows={false}
+            slidesToShow={1}
+            slidesToScroll={1}
+          >
+            {images.map((v) => (
+              <ImgWrapper key={v.src}>
+                <img src={v.src} alt={v.src} />
+              </ImgWrapper>
+            ))}
+          </Slick>
+          <Indicator>
+            <div>
+              {currentSlide + 1}
+              {' '}
+              /
+              {' '}
+              {images.length}
+            </div>
+          </Indicator>
+        </div>
+      </SlickWrapper>
+    </Overlay>
+  );
+};
 
 ImagesZoom.propTypes = {
-    images: propTypes.arrayOf(propTypes.object).isRequired,
-    onClose: propTypes.func.isRequired,
-}
+  images: propTypes.arrayOf(propTypes.object).isRequired,
+  onClose: propTypes.func.isRequired,
+};
 
-export default ImagesZoom
+export default ImagesZoom;

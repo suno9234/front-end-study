@@ -4,20 +4,18 @@ import Head from 'next/head';
 import 'antd/dist/reset.css';
 import wrapper from '../store/configureStore';
 
-const NodeBird = ({ Component }) => {
-    return (
-        <>
-            <Head>
-                <meta charSet='utf-8'></meta>
-                <title>NodeBird</title>
-            </Head>
-            <Component></Component>
-        </>
-    )
-}
+const NodeBird = ({ Component }) => (
+  <>
+    <Head>
+      <meta charSet="utf-8" />
+      <title>NodeBird</title>
+    </Head>
+    <Component />
+  </>
+);
 
 NodeBird.propTypes = {
-    Component: PropTypes.elementType.isRequired,
-}
+  Component: PropTypes.elementType.isRequired,
+};
 
 export default wrapper.withRedux(NodeBird);

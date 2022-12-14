@@ -8,7 +8,7 @@ export const Overlay = styled.div`
     left:0;
     right:0;
     bottom:0;
-`
+`;
 
 export const Header = styled.header`
     header:44px;
@@ -32,7 +32,6 @@ height:calc(100%-44px);
 background: #090909;
 
 `;
-
 
 export const ImgWrapper = styled.div`
 padding:32px;
@@ -65,10 +64,10 @@ export const CloseBtn = styled(CloseOutlined)`
     padding:15px;
     line-height:14px;
     cursor:pointer;
-`
+`;
 
 export const Global = createGlobalStyle`
     .slick-slide{
         display:inline-block;
     }
-`
+`;
