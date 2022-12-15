@@ -64,8 +64,6 @@ const PostCard = ({ post }) => {
           title={post.User.nickname}
           description={<PostCardContent postData={post.content} />}
         />
-        <div>{me?.id}</div>
-        <div>{post.User.id}</div>
       </Card>
       {
         commentFormOpened && (
