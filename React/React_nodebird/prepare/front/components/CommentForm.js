@@ -10,7 +10,7 @@ const CommentForm = ({ post }) => {
   const dispatch = useDispatch();
 
   const id = useSelector((state) => state.user.me?.id);
-  const { addCommentDone } = useSelector((state) => state.post);
+  const { addCommentDone, addCommentLoading } = useSelector((state) => state.post);
   const [commentText, onChangeCommentText, setCommentText] = useInput('');
 
   useEffect(() => {
@@ -20,7 +20,7 @@ const CommentForm = ({ post }) => {
   }, [addCommentDone]);
 
   const onSubmitComment = useCallback(() => {
-    console.log(post.id, commentText);
+    console.log(post.id, id, commentText);
     dispatch({
       type: ADD_COMMENT_REQUEST,
       data: {
@@ -34,7 +34,7 @@ const CommentForm = ({ post }) => {
     <Form onFinish={onSubmitComment}>
       <Form.Item>
         <Input.TextArea value={commentText} onChange={onChangeCommentText} />
-        <Button stlye={{ position: 'absolute', right: 0, bottom: -40 }} type="primary" htmlType="submit">삐약</Button>
+        <Button stlye={{ position: 'absolute', right: 0, bottom: -40 }} type="primary" htmlType="submit" loading={addCommentLoading}>삐약</Button>
       </Form.Item>
     </Form>
   );

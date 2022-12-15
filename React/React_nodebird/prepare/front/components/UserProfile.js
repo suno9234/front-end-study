@@ -34,6 +34,7 @@ const UserProfile = () => {
         title={me?.nickname}
       />
       <Button onClick={onLogOut} loading={logOutLoading}>로그아웃</Button>
+      <div>{me.id}</div>
     </Card>
   );
 };
