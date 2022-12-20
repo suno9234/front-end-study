@@ -15,17 +15,17 @@ const UserProfile = () => {
         <div key="twit">
           짹짹
           <br />
-          {me.Posts.length}
+          {me.Posts?.length}
         </div>,
         <div key="followings">
           팔로잉
           <br />
-          {me.Followings.length}
+          {me.Followings?.length}
         </div>,
         <div key="followers">
           팔로워
           <br />
-          {me.Followers.length}
+          {me.Followers?.length}
         </div>,
       ]}
     >
@@ -34,7 +34,6 @@ const UserProfile = () => {
         title={me?.nickname}
       />
       <Button onClick={onLogOut} loading={logOutLoading}>로그아웃</Button>
-      <div>{me.id}</div>
     </Card>
   );
 };
