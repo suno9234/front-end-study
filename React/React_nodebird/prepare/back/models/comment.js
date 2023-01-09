@@ -1,7 +1,7 @@
 module.exports = (sequelize, DataTypes) => {
   const Comment = sequelize.define('Comment', { // MySQL에는 users로 자동 저장 (소문자 + 복수)
     //id는 기본적으로 들어있다
-    comment:{
+    content:{
       type:DataTypes.STRING(140),
       allowNull : false,
     },

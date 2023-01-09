@@ -2,8 +2,10 @@ const express = require('express');
 const passport = require('passport');
 const postRouter = require('./routes/post');
 const userRouter = require('./routes/user');
+const postsRouter = require('./routes/posts');
 const db = require('./models');
 const dotenv = require('dotenv')
+const morgan = require('morgan');
 const cors = require('cors');
 const app = express();
 const passportConfig = require('./passport');
@@ -19,9 +21,10 @@ db.sequelize.sync()
   })
   .catch(console.error);
 
+app.use(morgan('dev'));
 app.use(cors({
-  origin: '*',
-  credentials: false,
+  origin: 'http://localhost:3000',
+  credentials: true,
 }));
 app.use(express.json()); // json
 app.use(express.urlencoded({ extended: true })); // form
@@ -39,11 +42,8 @@ app.get('/', (req, res) => {
   res.send('hello express');
 });
 
-app.get('/api', (req, res) => {
-  res.send('hello api');
-});
-
 app.use('/post', postRouter);
+app.use('/posts', postsRouter);
 app.use('/user', userRouter);
 
 app.listen(3065, () => {
