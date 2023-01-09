@@ -8,6 +8,7 @@ const dotenv = require('dotenv')
 const morgan = require('morgan');
 const cors = require('cors');
 const app = express();
+const path = require('path');
 const passportConfig = require('./passport');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
@@ -26,6 +27,7 @@ app.use(cors({
   origin: 'http://localhost:3000',
   credentials: true,
 }));
+app.use(express.static(path.join(__dirname, 'uploads')));
 app.use(express.json()); // json
 app.use(express.urlencoded({ extended: true })); // form
 app.use(cookieParser(process.env.COOKIE_SECRET));
