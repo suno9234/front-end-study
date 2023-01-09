@@ -4,13 +4,14 @@ import { useInView } from 'react-intersection-observer';
 import AppLayout from '../components/AppLayout';
 import PostForm from '../components/PostForm';
 import PostCard from '../components/PostCard';
-import { LOAD_POST_REQUEST } from '../reducers/post';
+import { LOAD_POSTS_REQUEST } from '../reducers/post';
 import { LOAD_MY_INFO_REQUEST } from '../reducers/user';
 
 const Home = () => {
   const dispatch = useDispatch();
   const [ref, inView] = useInView();
   const { me } = useSelector((state) => state.user);
+
   const { mainPosts, hasMorePosts, loadPostsLoading } = useSelector((state) => state.post);
 
   useEffect(() => {
@@ -22,7 +23,7 @@ const Home = () => {
     if (inView && hasMorePosts && !loadPostsLoading) {
       const lastId = mainPosts[mainPosts.length - 1]?.id;
       dispatch({
-        type: LOAD_POST_REQUEST,
+        type: LOAD_POSTS_REQUEST,
         lastId,
       });
     }
